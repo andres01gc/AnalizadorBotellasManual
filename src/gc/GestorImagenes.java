@@ -164,18 +164,14 @@ public class GestorImagenes {
 
             String line = "";
 
-
             for (String dat : datos) {
                 line += dat + ",";
             }
 
             bufferedWriter.write(line);
             System.out.println("se escribe");
-
             bufferedWriter.newLine();
-// to test
             bufferedWriter.close();
-
         } catch (IOException e) {
             e.printStackTrace();
         }

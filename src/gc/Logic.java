@@ -7,12 +7,12 @@ import java.util.ArrayList;
 
 public class Logic {
     private final GestorImagenes gestor;
-    private String mainPath = "E:\\Gc\\Trabajo\\Arce\\Botellas\\Imagenes_Finales\\Todas\\bin";
+    private String mainPath = "E:\\Gc\\Trabajo\\Arce\\Botellas\\Codes\\Resultados\\binaries";
     ArrayList<String> pathImagenes = new ArrayList();
 
 
     public Logic(PApplet app) {
-        pathImagenes = cargarPathsImagenesWithoutsub(mainPath);
+        pathImagenes = cargarPathsImagenesWithoutSubFolders(mainPath);
         gestor = new GestorImagenes(pathImagenes);
         //  gestor.loadAll();
     }
@@ -33,15 +33,18 @@ public class Logic {
         }
     }
 
-    public ArrayList<String> cargarPathsImagenesWithoutsub(String path) {
+    public ArrayList<String> cargarPathsImagenesWithoutSubFolders(String path) {
         File carpetaSeleccionada = new File(path);
         ArrayList<String> paths = new ArrayList<>();
 
         //se encarga de guardar acumulado_todo los paths de todas las imagnes dentro de la carpeta.
-        for (File filePath : carpetaSeleccionada.listFiles()) {
-            if (filePath.getName().contains(".JPG")) {
-                paths.add(filePath.getAbsolutePath());
-                // se cargan cada paths de la carpeta selecciones
+        for (File carpetaCat : carpetaSeleccionada.listFiles()) {
+            System.out.println(carpetaCat.getAbsolutePath());
+            for (File imagen : carpetaCat.listFiles()) {
+                if (imagen.getName().contains(".JPG")) {
+                    paths.add(imagen.getAbsolutePath());
+                    // se cargan cada paths de la carpeta selecciones
+                }
             }
         }
         return paths;
